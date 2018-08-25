@@ -1,0 +1,81 @@
+@charset 'utf-8';
+
+$waxxx:   #313131;
+$ruby:    #E61E41;
+$milk:    #ffffff;
+$heat:    #FBBB1C;
+$elektron:#00B4EC;
+
+$gutter-width: 2.5em;
+
+$font-family: 'Fabriga', sans-serif;
+
+.text-waxxx {
+  color: $waxxx;
+
+  a,
+  a:hover {
+    color: $waxxx;
+  }
+}
+
+.bg-waxxx {
+  background: $waxxx;
+}
+
+.text-ruby {
+  color: $ruby;
+
+  a,
+  a:hover {
+    color: $ruby;
+  }
+}
+
+.bg-ruby {
+  background: $ruby;
+}
+
+.text-milk {
+  color: $milk;
+
+  a,
+  a:hover {
+    color: $milk;
+  }
+}
+
+.bg-milk {
+  background: $milk;
+}
+
+.text-heat {
+  color: $heat;
+
+  a,
+  a:hover {
+    color: $heat;
+  }
+}
+
+.bg-heat {
+  background: $heat;
+}
+
+.text-elektron {
+  color: $elektron;
+
+  a,
+  a:hover {
+    color: $elektron;
+  }
+}
+
+.bg-elektron {
+  background: $elektron;
+}
+
+a:hover {
+  opacity: 0.5;
+  text-decoration: none !important;
+}

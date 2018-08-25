@@ -1,0 +1,31 @@
+.wrapper {
+  position: fixed;
+
+  > section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    transform-origin: 50% 100%;
+    z-index: 5;
+    transform: rotate(-180deg);
+    transition: transform 0s, opacity 0s 0.5s;
+    opacity: 0;
+
+    &.current {
+      opacity: 1;
+      z-index: 10;
+      transform: rotate(0);
+      transition: transform 0.5s ease;
+    }
+
+    &.past {
+      opacity: 1;
+      z-index: 7;
+      transform: rotate(180deg);
+      transition: transform 0.5s ease;
+    }
+  }
+}

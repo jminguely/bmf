@@ -1,0 +1,13 @@
+@charset 'utf-8';
+
+.main-nav a {
+  font-size: 18px;
+
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 13px;
+  }
+}

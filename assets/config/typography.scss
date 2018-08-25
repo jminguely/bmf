@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Fabriga';
+  src: url('/build/fonts/Fabriga-Regular.woff2') format('woff2'),
+       url('/build/fonts/Fabriga-Regular.woff') format('woff'),
+       url('/build/fonts/Fabriga-Regular.ttf') format('truetype');
+
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Fabriga';
+  src: url('/build/fonts/Fabriga-Bold.woff2') format('woff2'),
+       url('/build/fonts/Fabriga-Bold.woff') format('woff'),
+       url('/build/fonts/Fabriga-Bold.ttf') format('truetype');
+
+  font-weight: 700;
+}
+
+body {
+  font-family: $font-family;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.text-bold {
+  font-weight: 700;
+}

@@ -1,0 +1,21 @@
+@charset 'utf-8';
+
+.table {
+  .row {
+    margin-bottom: 0.5em;
+    padding: 0.5em 0;
+    color: $waxxx;
+
+    &:nth-child(odd) {
+      background: $milk;
+    }
+  }
+
+  .date {
+    text-align: right;
+  }
+
+  .event {
+    font-weight: 700;
+  }
+}
