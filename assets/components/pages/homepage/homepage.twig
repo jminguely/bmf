@@ -1,5 +1,12 @@
 <div class="bg-ruby wrapper">
+  <div class="fullscreen-bg">
+    <video autoplay muted loop class="bg-video">
+      <source src="../images/bmf.mp4" type="video/mp4">
+    </video>
+  </div>
+  {% include "organisms::header/header.twig" %}
   {% include "organisms::brassmaster-flash/brassmaster-flash.twig" %}
-  {% include "organisms::contact/contact.twig" %}
   {% include "organisms::tour/tour.twig" %}
+  {% include "organisms::contact/contact.twig" %}
+  {% include "organisms::footer/footer.twig" %}
 </div>

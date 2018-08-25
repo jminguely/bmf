@@ -1,13 +1,25 @@
 @charset 'utf-8';
 
-.main-nav a {
-  font-size: 18px;
+.main-logo {
+  transform: rotate(-10deg);
+  filter: drop-shadow(1px 1px 2px transparentize($black, 0.6));
+}
 
-  @include media-breakpoint-down(md) {
-    font-size: 16px;
-  }
+.main-nav {
+  box-shadow: 0 2px 1px transparentize($black, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: $zindex-sticky;
 
-  @include media-breakpoint-down(xs) {
-    font-size: 13px;
+  a {
+    font-size: 18px;
+  
+    @include media-breakpoint-down(md) {
+      font-size: 16px;
+    }
+  
+    @include media-breakpoint-down(xs) {
+      font-size: 13px;
+    }
   }
 }

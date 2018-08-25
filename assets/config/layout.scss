@@ -1,31 +1,73 @@
 .wrapper {
-  position: fixed;
-
+  .site-header,
+  .site-footer,
   > section {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: scroll;
-    transform-origin: 50% 100%;
-    z-index: 5;
-    transform: rotate(-180deg);
-    transition: transform 0s, opacity 0s 0.5s;
-    opacity: 0;
+    position: relative;
+    z-index: 10;
+  }
+}
 
-    &.current {
-      opacity: 1;
-      z-index: 10;
-      transform: rotate(0);
-      transition: transform 0.5s ease;
-    }
+.brassmaster-flash {
+  position: relative;
+  width: 100vw;
+  min-height: calc((9/16)*100vw);
 
-    &.past {
-      opacity: 1;
-      z-index: 7;
-      transform: rotate(180deg);
-      transition: transform 0.5s ease;
-    }
+  .content {
+    background: transparentize($black, 0.5);
+    color: $milk;
+  }
+}
+
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+
+  .bg-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.img-full {
+  width: 100%;
+  height: auto;
+}
+
+.img-radio {
+  position: absolute;
+  width: 20vw;
+  height: auto;
+  top: 0;
+  right: 15%;
+  transform: translate(50%, -61%) rotate(15deg);
+  filter: drop-shadow(1px 1px 2px transparentize($black, 0.6));
+}
+
+.img-cap {
+  position: absolute;
+  width: 20vw;
+  height: auto;
+  top: 0;
+  left: 15%;
+  transform: translate(-50%, -61%);
+  filter: drop-shadow(1px 1px 2px transparentize($black, 0.6));
+}
+
+@include media-breakpoint-down(sm) {
+  .img-radio,
+  .img-cap {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: -25vw auto 2em;
+    width: 40vw;
   }
 }
