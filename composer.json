@@ -1,0 +1,15 @@
+{
+    "name": "mingus/bmf",
+    "type": "project",
+    "require": {
+        "sleiman/airtable-php": "^2.2",
+        "twig/twig": "^2.0",
+        "fightbulc/moment": "^1.26"
+    },
+    "authors": [
+        {
+            "name": "Julien Minguely",
+            "email": "jminguely@gmail.com"
+        }
+    ]
+}
