@@ -9,7 +9,7 @@ set :repo_url, "https://github.com/jminguely/bmf.git"
 set :branch, 'dev'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/jminguely/www/brass.hiphop/api"
+set :deploy_to, "/home/jminguely/www/brass.hiphop/current"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
