@@ -25,7 +25,7 @@
   <div class="bg-ruby wrapper">
     <div class="fullscreen-bg">
       <video autoplay="" muted="" loop="" class="bg-video">
-          <source src="build/images/bmf.mp4" type="video/mp4">
+          <source src="build/images/bmf.mp4?v=2" type="video/mp4">
       </video>
     </div>
     <header class="site-header bg-ruby text-white">
