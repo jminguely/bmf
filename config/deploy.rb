@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "brass-api"
-set :repo_url, "https://github.com/jminguely/brass-api.git"
+set :repo_url, "https://github.com/jminguely/bmf.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
