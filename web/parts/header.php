@@ -40,19 +40,28 @@
       </div>
     </header>
     <nav class="main-nav bg-milk text-waxxx text-center py-3">
-      <a target="_blank" href="https://instagram.com/brassmasterflash" class="mr-2 text-bold text-waxxx mr-2">
+      <a target="_blank" href="https://www.youtube.com/channel/UCOQiULp_ChoKiuQouzD2-jQ" class="mr-2 text-bold text-waxxx mr-2">
+        <svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube">
+            </use>
+        </svg>
+      </a>
+      <a target="_blank" href="https://instagram.com/brassmasterflash" class="mr-2 text-bold text-waxxx mx-2">
         <svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram">
             </use>
         </svg>
       </a>
-      <a target="_blank" href="https://www.facebook.com/pg/brassmasterflash/" class="mx-2 text-bold text-waxxx mr-2">
+      <a target="_blank" href="https://www.facebook.com/pg/brassmasterflash/" class="mx-2 text-bold text-waxxx">
         <svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook">
             </use>
         </svg>
       </a>
+      <br class="d-md-none">
+      <br class="d-md-none">
       <a href="#brassmaster-flash" class="internal-link text-bold text-uppercase text-waxxx mx-2">Brassmaster Flash</a>
+      <a href="#video" class="internal-link text-bold text-uppercase text-waxxx mx-2">Video</a>
       <a href="#tour" class="internal-link text-bold text-uppercase text-waxxx mx-2">Tour</a>
       <a href="#contact" class="internal-link text-bold text-uppercase text-waxxx ml-2">Contact</a>
     </nav>

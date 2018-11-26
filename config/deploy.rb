@@ -1,12 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "brass-api"
+set :application, "bmf"
 set :repo_url, "https://github.com/jminguely/bmf.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, 'dev'
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/jminguely/www/brass.hiphop/current"
@@ -22,7 +22,7 @@ set :deploy_to, "/home/jminguely/www/brass.hiphop/current"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, '.env'
+# append :linked_files, '.env'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -40,13 +40,3 @@ append :linked_files, '.env'
 # set :ssh_options, verify_host_key: :secure
 
 set :ssh_options, { :forward_agent => true }
-
-namespace :deploy do
-
-    desc 'Restart application'
-    task :restart do
-      invoke 'pm2:restart'
-    end
-  
-    after :publishing, :restart   
-  end
