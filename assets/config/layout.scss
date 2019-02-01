@@ -25,7 +25,7 @@
   bottom: 0;
   left: 0;
   overflow: hidden;
-  z-index: 0;
+  z-index: -1;
 
   .bg-video {
     display: block;

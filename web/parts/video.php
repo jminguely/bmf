@@ -12,7 +12,7 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube">
             </use>
         </svg>
-        Moar video on on YouTube channel !
+        More video on our YouTube channel!
         </a>
       </div>
     </div>
