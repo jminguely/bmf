@@ -8,7 +8,7 @@
     ));
 
     $paramsFuture = array(
-        "fields" => ['Date check-in', 'Titre', 'Ville'],
+        "fields" => ['Date check-in', 'Titre', 'Ville', 'URL'],
         "sort" => [
             [
                 'field' => 'Date check-in', 
@@ -50,9 +50,21 @@
                             $m = new \Moment\Moment($record->fields->{'Date check-in'}, 'Europe/Zurich');
                             ?>
                             <div class="row">
-                                <div class="date col-4 col-md-4"><?php echo $m->format("d.m.y"); ?></div>
-                                <div class="event col-8 col-md-4"><?php echo $record->fields->Titre; ?></div>
-                                <div class="location col-8 offset-4 offset-md-0 col-md-4"><?php echo $record->fields->Ville; ?></div>
+                                <div class="text-right col-3 offset-md-1">
+                                    <time datetime=" <?php echo $m->format("Y-m-d"); ?>">
+                                        <strong><?php echo $m->format("d.m"); ?></strong><br />
+                                        <span class="bigText"><?php echo $m->format("Y"); ?></span>
+                                    </time>
+                                </div>
+                                <div class="col-6 col-md-5 col-lg-4">
+                                    <strong><?php echo $record->fields->Titre; ?></strong><br />
+                                    <?php echo $record->fields->Ville; ?>
+                                </div>
+                                <?php if(isset($record->fields->URL)):?>
+                                    <div class="col-3 col-md-3">
+                                        <a class=" mt-2 btn btn-sm btn-outline-secondary" target="_blank" href="<?php echo $record->fields->URL; ?>">Details</a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <?php                    
                         } ?>
@@ -65,18 +77,26 @@
             ?>
         
         <h2 class="mb-3 text-white h1 text-center">Past Date</h2>
-        <div class="table w-100 mb-5">
+        <div class="table table-sm w-100 mb-5">
             <?php
             do {
                 $requestPast = $requestPast->getResponse();
                 foreach ($requestPast['records'] as $key => $record) {
                     $m = new \Moment\Moment($record->fields->{'Date check-in'}, 'Europe/Zurich');
                     ?>
-                    <div class="row">
-                        <div class="date col-4 col-md-4"><?php echo $m->format("d.m.y"); ?></div>
-                        <div class="event col-8 col-md-4"><?php echo $record->fields->Titre; ?></div>
-                        <div class="location col-8 offset-4 offset-md-0 col-md-4"><?php echo $record->fields->Ville; ?></div>
-                    </div>
+                        <div class="row">
+                            <div class="text-right col-3">
+                                <time datetime=" <?php echo $m->format("Y-m-d"); ?>">
+                                    <?php echo $m->format("d.m.y"); ?>
+                                </time>
+                            </div>
+                            <div class="col-6 col-md-5 col-lg-4">
+                                <strong><?php echo $record->fields->Titre; ?></strong>
+                            </div>
+                            <div class="col-6 col-md-5 col-lg-4">
+                                <?php echo $record->fields->Ville; ?>
+                            </div>
+                        </div>
                     <?php                    
                 }
             }
