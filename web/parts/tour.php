@@ -85,7 +85,7 @@
                     $m = new \Moment\Moment($record->fields->{'Date check-in'}, 'Europe/Zurich');
                     ?>
                         <div class="row">
-                            <div class="text-right col-3">
+                            <div class="text-right col-3 offset-md-1">
                                 <time datetime=" <?php echo $m->format("Y-m-d"); ?>">
                                     <?php echo $m->format("d.m.y"); ?>
                                 </time>
@@ -93,7 +93,7 @@
                             <div class="col-6 col-md-5 col-lg-4">
                                 <strong><?php echo $record->fields->Titre; ?></strong>
                             </div>
-                            <div class="col-6 col-md-5 col-lg-4">
+                            <div class="col-3 col-md-3">
                                 <?php echo $record->fields->Ville; ?>
                             </div>
                         </div>

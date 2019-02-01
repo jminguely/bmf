@@ -6,6 +6,8 @@ require "capistrano/deploy"
 
 require 'capistrano/npm'
 
+require 'capistrano/composer'
+
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"

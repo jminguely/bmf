@@ -9,7 +9,15 @@ set :repo_url, "https://github.com/jminguely/bmf.git"
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/jminguely/www/brass.hiphop/current"
+set :deploy_to, "/home/jminguely/www/brass.hiphop"
+
+set :npm_flags, '--production' # default
+
+SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+
+namespace :deploy do
+  after :starting, 'composer:install_executable'
+end
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
