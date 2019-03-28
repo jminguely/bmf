@@ -15,7 +15,7 @@
                 'direction'=> 'asc'
             ]
         ],
-        "filterByFormula" => "AND(Online, Statut = 'Futur')"
+        "filterByFormula" => "AND(Online, Past = 'Future')"
     );
     
     $requestFuture = $airtable->getContent( 'Concerts', $paramsFuture);
@@ -28,7 +28,7 @@
                 'direction'=> 'asc'
             ]
         ],
-        "filterByFormula" => "AND(Online, Statut = 'Passé')"
+        "filterByFormula" => "AND(Online, Past = 'Past')"
     );
     
     $requestPast= $airtable->getContent( 'Concerts', $paramsPast);
