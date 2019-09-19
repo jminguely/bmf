@@ -11,8 +11,6 @@ set :branch, 'master'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/jminguely/www/brass.hiphop"
 
-set :npm_flags, '--production' # default
-
 SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
 
 namespace :deploy do
