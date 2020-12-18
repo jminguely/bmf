@@ -7,12 +7,12 @@
         <div class="embedWrapper">
           <iframe width="1120" height="630" src="https://www.youtube.com/embed/CxdBrGAEZpE?autoplay=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <a href="https://www.youtube.com/channel/UCOQiULp_ChoKiuQouzD2-jQ" target="_blank" class="h3 mt-5 btn btn-primary text-white">
-        <svg class="icon mr-2">
+        <a href="https://www.youtube.com/watch?v=l7IY1sUDEhg" target="_blank" class="h3 mt-5 btn btn-primary text-white">
+          <svg class="icon mr-2">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube">
             </use>
-        </svg>
-        More video on our YouTube channel!
+          </svg>
+          More video on our YouTube channel!
         </a>
       </div>
     </div>
