@@ -1,3 +1,13 @@
 # Brassmaster Flash
 
-Please document your project here!
+Prepare for deployment
+
+```
+bundle install
+```
+
+Deploy on production
+
+```
+cap production deploy
+```
