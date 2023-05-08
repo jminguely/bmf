@@ -9,8 +9,8 @@
             <h4>Music &amp; stuff</h4>
             <strong>Brassmaster Flash</strong><br>
             <div class="half-opacity">
-              Julien Minguely<br>
-              <a href="tel:+41 797626433">+41 79 762 64 33</a><br>
+              Elori Baume<br>
+              <a href="tel:+41 78 927 87 11">+41 78 927 87 11</a><br>
               <a href="mail:flash@brass.hiphop">flash@brass.hiphop</a>
             </div>
           </div>
