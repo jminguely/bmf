@@ -4,8 +4,8 @@
       <div class="col-md-8 d-flex">
         <div class="content mb-5 p-5">
           <h2>Brassmaster Flash</h2>
-          <p>The musicians of the Brassmaster Flash brass band met each other at Switzerland’s universities of jazz. These 12 passionate students then set themselves the challenge of bringing the colours of the New Orleans Mardi Gras to the streets of the Swiss Confederation.</p>
-          <p>Mixing funk grooves with hip-hop breakbeats, their fabulous street fanfare is a musical nod in the direction of Grandmaster Flash, a pioneer of hip-hop, scratch and remix.</p>
+          <p>Energetic, innovative and daring, the hip-hop brass band Brassmaster Flash has been touring the stages and streets of Switzerland and abroad since 2017. Between original compositions and covers of the great classics of the style, the band gets an ever-growing audience moving..</p>
+          <p>Formed by professional musicians from all over Switzerland and beyond, united by their love of hip-hop, Brassmaster Flash is preparing the release of its first album for the fall of 2023.</p>
         </div>
       </div>
     </div>
