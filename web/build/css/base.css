@@ -5322,7 +5322,6 @@ h6 {
   -ms-flex-item-align: center;
   align-self: center;
   position: relative;
-  top: 0.11em;
   -webkit-transition: -webkit-transform 0.2s;
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;

@@ -39,7 +39,7 @@
         </div>
       </div>
     </header>
-    <nav class="main-nav bg-milk text-waxxx text-center py-3">
+    <nav class="main-nav bg-milk text-center py-3">
       <a target="_blank" href="https://brassmasterflash.bandcamp.com/" class="mr-2 text-bold text-waxxx">
         <svg class="icon" alt="Bandcamp">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-bandcamp">
@@ -66,8 +66,9 @@
       </a>
       <br class="d-md-none">
       <br class="d-md-none">
-      <a href="#brassmaster-flash" class="internal-link text-bold text-uppercase text-waxxx mx-2">Brassmaster Flash</a>
-      <a href="#video" class="internal-link text-bold text-uppercase text-waxxx mx-2">Video</a>
-      <a href="#tour" class="internal-link text-bold text-uppercase text-waxxx mx-2">Tour</a>
-      <a href="#contact" class="internal-link text-bold text-uppercase text-waxxx ml-2">Contact</a>
+      <span class="d-none d-md-inline px-5"> | </span>
+      <a href="#brassmaster-flash" class="internal-link text-bold text-uppercase text-ruby mx-3 ">Brassmaster Flash</a>
+      <a href="#video" class="internal-link text-bold text-uppercase text-waxxx mx-3 ">Video</a>
+      <a href="#tour" class="internal-link text-bold text-uppercase text-waxxx mx-3 ">Tour</a>
+      <a href="#contact" class="internal-link text-bold text-uppercase text-waxxx ml-1 ">Contact</a>
     </nav>
