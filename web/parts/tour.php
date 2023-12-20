@@ -1,109 +1,148 @@
-<?php 
-    require '../vendor/autoload.php';
+<?php
+// $paramsFuture = array(
+//   "fields" => ['Date check-in', 'Titre', 'Ville', 'URL'],
 
-    use \TANIOS\Airtable\Airtable;
-    $airtable = new Airtable(array(
-        'api_key' => 'keyO8mLzx0rpa46cY',
-        'base'    => 'appOvGQqOefkMpE9o'
-    ));
+// );
 
-    $paramsFuture = array(
-        "fields" => ['Date check-in', 'Titre', 'Ville', 'URL'],
-        "sort" => [
-            [
-                'field' => 'Date check-in', 
-                'direction'=> 'asc'
-            ]
-        ],
-        "filterByFormula" => "AND(Online, Past = 'Future')"
-    );
-    
-    $requestFuture = $airtable->getContent( 'Concerts', $paramsFuture);
 
-    $paramsPast = array(
-        "fields" => ['Date check-in', 'Titre', 'Ville'],
-        "sort" => [
-            [
-                'field' => 'Date check-in', 
-                'direction'=> 'asc'
-            ]
-        ],
-        "filterByFormula" => "AND(Online, Past = 'Past')"
-    );
-    
-    $requestPast= $airtable->getContent( 'Concerts', $paramsPast);
-    
+// $paramsPast = array(
+//   "fields" => ['Date check-in', 'Titre', 'Ville'],
+//   "sort" => [
+//     [
+//       'field' => 'Date check-in',
+//       'direction' => 'desc'
+//     ]
+//   ],
+//   "filterByFormula" => "AND(Online, Past = 'Past')"
+// );
+
 ?>
-<section id="tour" class="bg-ruby py-5 d-flex flex-column">
-  <img src="build/svg/radio.svg" class="img-radio">
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="/build/js/airtable.js"></script>
+<script>
+  var Airtable = require('airtable');
+  var base = new Airtable({
+    apiKey: 'keyO8mLzx0rpa46cY'
+  }).base('appOvGQqOefkMpE9o');
+
+
+  var loadConcerts = function() {
+    var futureConcertEl = document.getElementById('future-dates');
+
+    base('Concerts').select({
+      sort: [{
+        field: 'Date check-in',
+        direction: 'asc'
+      }],
+      filterByFormula: "AND(Online, Past = 'Future')"
+    }).eachPage(function page(records, fetchNextPage) {
+
+      let futureConcertElHtml = "";
+
+      if (records.length) {
+        futureConcertElHtml += '<h2 class="mb-3 text-white h1 text-center">On Tour !</h2>';
+        futureConcertElHtml += '<div class="table w-100 mb-5">';
+
+        records.forEach((record) => {
+          let m = dayjs(record.fields['Date check-in'], "YYYYMMDD");
+
+          futureConcertElHtml += '<div class="row">';
+          futureConcertElHtml += '<div class="text-right col-3 offset-md-1">';
+          futureConcertElHtml += '<time datetime="' + m.format("YY-MM-DD") + '">';
+          futureConcertElHtml += '<strong>' + m.format("DD.MM") + '</strong><br />';
+          futureConcertElHtml += '<span class="bigText">' + m.format("YYYY") + '</span>';
+          futureConcertElHtml += '</time>';
+          futureConcertElHtml += '</div>';
+          futureConcertElHtml += '<div class="col-6 col-md-5 col-lg-4">';
+          futureConcertElHtml += '<strong>' + record.fields.Titre + '</strong><br />';
+          futureConcertElHtml += record.fields.Ville;
+          futureConcertElHtml += '</div>';
+
+          if (record.fields.URL) {
+            futureConcertElHtml += '<div class="col-3 col-md-3">';
+            futureConcertElHtml += '<a class=" mt-2 btn btn-sm btn-outline-secondary" target="_blank" href="' + record.fields.URL + '">Details</a>';
+            futureConcertElHtml += '</div>';
+          }
+
+          futureConcertElHtml += '</div>';
+        });
+
+        futureConcertElHtml += '</div>';
+      } else {
+        futureConcertElHtml += '<h3 class="text-white text-center my-5">Currently on well deserved holidays</h3>';
+      }
+
+      futureConcertEl.innerHTML = futureConcertElHtml;
+      fetchNextPage();
+    }, function done(error) {
+      console.log(error);
+    });
+
+    var pastConcertEl = document.getElementById('past-dates');
+
+    base('Concerts').select({
+      sort: [{
+        field: 'Date check-in',
+        direction: 'desc'
+      }],
+      filterByFormula: "AND(Online, Past = 'Past')"
+    }).eachPage(function page(records, fetchNextPage) {
+
+      let pastConcertElHtml = "";
+
+      if (records.length) {
+        pastConcertElHtml += '<h2 class="mb-3 text-white h1 text-center">On Tour !</h2>';
+        pastConcertElHtml += '<div class="table w-100 mb-5">';
+
+        records.forEach((record) => {
+          let m = dayjs(record.fields['Date check-in'], "YYYYMMDD");
+
+          pastConcertElHtml += '<div class="row">';
+          pastConcertElHtml += '<div class="text-right col-3 offset-md-1">';
+          pastConcertElHtml += '<time datetime="' + m.format("YY-MM-DD") + '">';
+          pastConcertElHtml += '<strong>' + m.format("DD.MM") + '</strong><br />';
+          pastConcertElHtml += '<span class="bigText">' + m.format("YYYY") + '</span>';
+          pastConcertElHtml += '</time>';
+          pastConcertElHtml += '</div>';
+          pastConcertElHtml += '<div class="col-6 col-md-5 col-lg-4">';
+          pastConcertElHtml += '<strong>' + record.fields.Titre + '</strong><br />';
+          pastConcertElHtml += record.fields.Ville;
+          pastConcertElHtml += '</div>';
+
+          if (record.fields.URL) {
+            pastConcertElHtml += '<div class="col-3 col-md-3">';
+            pastConcertElHtml += '<a class=" mt-2 btn btn-sm btn-outline-secondary" target="_blank" href="' + record.fields.URL + '">Details</a>';
+            pastConcertElHtml += '</div>';
+          }
+
+          pastConcertElHtml += '</div>';
+        });
+
+        pastConcertElHtml += '</div>';
+      } else {
+        pastConcertElHtml += '<h3 class="text-white text-center my-5">Currently on well deserved holidays</h3>';
+      }
+
+      pastConcertEl.innerHTML = pastConcertElHtml;
+      fetchNextPage();
+    }, function done(error) {
+      console.log(error);
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadConcerts();
+  });
+</script>
+<section id="tour" class="bg-waxxx py-5 d-flex flex-column">
   <div class="container py-5">
     <div class="row">
       <div class="col-md-10 offset-md-1">
-        
-            <?php
-            do {
-                $responseFuture = $requestFuture->getResponse(); ?>
-                <?php if (sizeOf($responseFuture['records'])):  ?>
-                    <h2 class="mb-3 text-white h1 text-center">On Tour !</h2>
-                    <div class="table w-100 mb-5">
-                        <?php foreach ($responseFuture['records'] as $key => $record) {
-                            $m = new \Moment\Moment($record->fields->{'Date check-in'}, 'Europe/Zurich');
-                            ?>
-                            <div class="row">
-                                <div class="text-right col-3 offset-md-1">
-                                    <time datetime=" <?php echo $m->format("Y-m-d"); ?>">
-                                        <strong><?php echo $m->format("d.m"); ?></strong><br />
-                                        <span class="bigText"><?php echo $m->format("Y"); ?></span>
-                                    </time>
-                                </div>
-                                <div class="col-6 col-md-5 col-lg-4">
-                                    <strong><?php echo $record->fields->Titre; ?></strong><br />
-                                    <?php echo $record->fields->Ville; ?>
-                                </div>
-                                <?php if(isset($record->fields->URL)):?>
-                                    <div class="col-3 col-md-3">
-                                        <a class=" mt-2 btn btn-sm btn-outline-secondary" target="_blank" href="<?php echo $record->fields->URL; ?>">Details</a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <?php                    
-                        } ?>
-                    </div>
-                <?php else: ?>
-                    <h3 class="text-white text-center my-5">Currently on well deserved holidays</h3>
-                <?php endif; ?>
-            <?php }
-            while( $requestFuture = $responseFuture->next() );
-            ?>
-        
-        <h2 class="mb-3 text-white h1 text-center">Past Date</h2>
-        <div class="table table-sm w-100 mb-5">
-            <?php
-            do {
-                $requestPast = $requestPast->getResponse();
-                foreach ($requestPast['records'] as $key => $record) {
-                    $m = new \Moment\Moment($record->fields->{'Date check-in'}, 'Europe/Zurich');
-                    ?>
-                        <div class="row">
-                            <div class="text-right col-3 offset-md-1">
-                                <time datetime=" <?php echo $m->format("Y-m-d"); ?>">
-                                    <?php echo $m->format("d.m.y"); ?>
-                                </time>
-                            </div>
-                            <div class="col-6 col-md-5 col-lg-4">
-                                <strong><?php echo $record->fields->Titre; ?></strong>
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <?php echo $record->fields->Ville; ?>
-                            </div>
-                        </div>
-                    <?php                    
-                }
-            }
-            while( $requestPast = $requestPast->next() );
-            ?>
-        </div>
+        <div id="future-dates"></div>
+        <div id="past-dates"></div>
       </div>
     </div>
+  </div>
   </div>
 </section>

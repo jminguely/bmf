@@ -25,10 +25,10 @@
   <div class="wrapper">
     <div class="fullscreen-bg">
       <video autoplay="" muted="" loop="" class="bg-video">
-          <source src="build/images/bmf.mp4?v=2" type="video/mp4">
+        <source src="build/images/bmf.mp4?v=2" type="video/mp4">
       </video>
     </div>
-    <header class="site-header bg-ruby text-white">
+    <header class="site-header bg-destroy text-white">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
@@ -40,22 +40,28 @@
       </div>
     </header>
     <nav class="main-nav bg-milk text-waxxx text-center py-3">
-      <a target="_blank" href="https://www.youtube.com/channel/UCOQiULp_ChoKiuQouzD2-jQ" class="mr-2 text-bold text-waxxx mr-2">
-        <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube">
-            </use>
+      <a target="_blank" href="https://brassmasterflash.bandcamp.com/" class="mr-2 text-bold text-waxxx">
+        <svg class="icon" alt="Bandcamp">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-bandcamp">
+          </use>
         </svg>
       </a>
-      <a target="_blank" href="https://instagram.com/brassmasterflash" class="mr-2 text-bold text-waxxx mx-2">
-        <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram">
-            </use>
+      <a target="_blank" href="https://www.youtube.com/channel/UCOQiULp_ChoKiuQouzD2-jQ" class="mx-2 text-bold text-waxxx">
+        <svg class="icon" alt="YouTube">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube">
+          </use>
+        </svg>
+      </a>
+      <a target="_blank" href="https://instagram.com/brassmasterflash" class="text-bold text-waxxx mx-2">
+        <svg class="icon" alt="Instagram">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram">
+          </use>
         </svg>
       </a>
       <a target="_blank" href="https://www.facebook.com/pg/brassmasterflash/" class="mx-2 text-bold text-waxxx">
-        <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook">
-            </use>
+        <svg class="icon" alt="Facebook">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook">
+          </use>
         </svg>
       </a>
       <br class="d-md-none">
