@@ -92,7 +92,7 @@
       let pastConcertElHtml = "";
 
       if (records.length) {
-        pastConcertElHtml += '<h2 class="mb-3 text-white h1 text-center">On Tour !</h2>';
+        pastConcertElHtml += '<h2 class="mb-3 text-white h1 text-center">Past gigs</h2>';
         pastConcertElHtml += '<div class="table w-100 mb-5">';
 
         records.forEach((record) => {
@@ -120,8 +120,6 @@
         });
 
         pastConcertElHtml += '</div>';
-      } else {
-        pastConcertElHtml += '<h3 class="text-white text-center my-5">Currently on well deserved holidays</h3>';
       }
 
       pastConcertEl.innerHTML = pastConcertElHtml;
