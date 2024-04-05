@@ -148,10 +148,10 @@ require = (function () { function r(e, n, t) { function o(i, f) { if (!n[i]) { i
         return result.toJSON();
       };
       Base.prototype._checkStatusForError = function (statusCode, body) {
-        const _a = (body !== null && body !== void 0 ? body : { error: {} }).error; let
+        const _a = (body !== null && body !== void 0 ? body : { error: {} }).error; const
           error = _a === void 0 ? {} : _a;
-        let { type } = error;
-        let message = error.message;
+        const { type } = error;
+        const { message } = error;
         if (statusCode === 401) {
           return new airtable_error_1.default('AUTHENTICATION_REQUIRED', 'You should provide valid api key to perform this operation', statusCode);
         }
@@ -1862,7 +1862,7 @@ require = (function () { function r(e, n, t) { function o(i, f) { if (!n[i]) { i
 
     /** Used to detect if a method is native. */
     const reIsNative = RegExp(`^${funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
-        .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?')}$`);
+      .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?')}$`);
 
     /**
      * The base implementation of `_.isNative` without bad shim checks.
@@ -3690,8 +3690,11 @@ require = (function () { function r(e, n, t) { function o(i, f) { if (!n[i]) { i
         };
       };
       Airtable.configure = function (_a) {
-        const { apiKey } = _a; const { endpointUrl } = _a; const { apiVersion } = _a; const { noRetryIfRateLimited } = _a; const
-          { requestTimeout } = _a;
+        const { apiKey } = _a;
+        const { endpointUrl } = _a;
+        const { apiVersion } = _a;
+        const { noRetryIfRateLimited } = _a;
+        const { requestTimeout } = _a;
         Airtable.apiKey = apiKey;
         Airtable.endpointUrl = endpointUrl;
         Airtable.apiVersion = apiVersion;

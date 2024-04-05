@@ -1,30 +1,12 @@
-<?php
-// $paramsFuture = array(
-//   "fields" => ['Date check-in', 'Titre', 'Ville', 'URL'],
-
-// );
-
-
-// $paramsPast = array(
-//   "fields" => ['Date check-in', 'Titre', 'Ville'],
-//   "sort" => [
-//     [
-//       'field' => 'Date check-in',
-//       'direction' => 'desc'
-//     ]
-//   ],
-//   "filterByFormula" => "AND(Online, Past = 'Past')"
-// );
-
-?>
-
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script src="/build/js/airtable.js"></script>
 <script>
   var Airtable = require('airtable');
-  var base = new Airtable({
-    apiKey: 'keyO8mLzx0rpa46cY'
-  }).base('appOvGQqOefkMpE9o');
+  Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'patUtNQqAKEWtjHmE.b2784a36b2affaed528b285e34f404b7719cdb950c7ed141558dc7a9b363b8d2'
+  });
+  var base = Airtable.base('appOvGQqOefkMpE9o');
 
 
   var loadConcerts = function() {
