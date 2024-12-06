@@ -39,10 +39,6 @@
 .bg-elektron {
   background: #00b4ec;
 }
-a:hover {
-  opacity: 0.5;
-}
-
 .bg-destroy {
   background: black url(../images/bg-destroy.jpg) no-repeat center center;
   background-size: cover;
@@ -122,6 +118,7 @@ body {
   color: #313131;
   text-align: left;
   background-color: #fff;
+  overscroll-behavior-y: none;
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;

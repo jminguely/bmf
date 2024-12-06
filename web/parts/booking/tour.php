@@ -46,7 +46,7 @@
           field: 'Date check-in',
           direction: 'asc'
         }],
-        filterByFormula: "AND(Online, Past = 'Future')"
+        filterByFormula: "AND(Past = 'Future', Statut = 'Confirmé')"
       }).eachPage(function page(records, fetchNextPage) {
         futureConcerts = futureConcerts.concat(records);
         fetchNextPage();
@@ -88,24 +88,18 @@
       records.forEach((record) => {
         let m = dayjs(record.fields['Date check-in'], "YYYYMMDD");
 
-        html += '<div class="row">';
-        html += '<div class="text-right col-3 offset-md-1">';
+        html += '<div class="row" style="padding: 2px 0;">';
+        html += '<div class="text-right col-2">';
         html += '<time datetime="' + m.format("YY-MM-DD") + '">';
-        html += '<strong>' + m.format("DD.MM") + '</strong><br />';
-        html += '<span class="bigText">' + m.format("YYYY") + '</span>';
+        html += m.format("DD.MM.YYYY");
         html += '</time>';
         html += '</div>';
-        html += '<div class="col-6 col-md-5 col-lg-4">';
-        html += '<strong>' + record.fields.Titre + '</strong><br />';
+        html += '<div class="col-5">';
+        html += '<strong>' + record.fields.Titre + '</strong>';
+        html += '</div>';
+        html += '<div class="col-3">';
         html += record.fields.Ville;
         html += '</div>';
-
-        if (record.fields.URL) {
-          html += '<div class="col-3 col-md-3">';
-          html += '<a class=" mt-2 btn btn-sm btn-outline-secondary" target="_blank" href="' + record.fields.URL + '">Details</a>';
-          html += '</div>';
-        }
-
         html += '</div>';
       });
 
