@@ -214,6 +214,12 @@ a:hover {
   color: #a5122c;
   text-decoration: underline;
 }
+.bg-ruby a {
+  color: #fff;
+}
+.bg-ruby a:hover {
+  color: #fff9;
+}
 a:not([href]):not([tabindex]),
 a:not([href]):not([tabindex]):focus,
 a:not([href]):not([tabindex]):hover {
