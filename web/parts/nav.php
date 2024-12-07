@@ -17,6 +17,12 @@
       </use>
     </svg>
   </a>
+  <a target="_blank" href="https://geo.music.apple.com/ch/album/_/1720089753?app=music&at=1000lHKX&itscg=30200&itsct=lt_m&ls=1&mt=1" class="mx-2 text-bold text-waxxx">
+    <svg class="icon" alt="Apple Music">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-apple-music">
+      </use>
+    </svg>
+  </a>
   <a target="_blank" href="https://instagram.com/brassmasterflash" class="text-bold text-waxxx mx-2">
     <svg class="icon" alt="Instagram">
       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-instagram">
