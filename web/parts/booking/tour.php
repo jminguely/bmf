@@ -89,15 +89,15 @@
         let m = dayjs(record.fields['Date check-in'], "YYYYMMDD");
 
         html += '<div class="row" style="padding: 2px 0;">';
-        html += '<div class="text-right col-2">';
+        html += '<div class="text-md-right col col-12 col-md-2">';
         html += '<time datetime="' + m.format("YY-MM-DD") + '">';
         html += m.format("DD.MM.YYYY");
         html += '</time>';
         html += '</div>';
-        html += '<div class="col-5">';
+        html += '<div class="col col-6 col-md-5">';
         html += '<strong>' + record.fields.Titre + '</strong>';
         html += '</div>';
-        html += '<div class="col-3">';
+        html += '<div class="col col-6 col-md-3">';
         html += record.fields.Ville;
         html += '</div>';
         html += '</div>';

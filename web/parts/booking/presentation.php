@@ -15,14 +15,14 @@
         </p>
         <p>
 
-          Zwischen Eigenkompositionen und Coverversionen von Stilklassikern bringt die Gruppe ein immer grösser werdendes Publikum in Bewegung.. Brassmaster Flash besteht aus professionellen Musikerinnen und Musikern aus der ganzen Schweiz und darüber hinaus, die ihre Liebe zum Hip-Hop verbindet, und bereitet die Veröffentlichung ihres ersten Albums für den Herbst 2023 vor.
+          Zwischen Eigenkompositionen und Coverversionen von Stilklassikern bringt die Gruppe ein immer grösser werdendes Publikum in Bewegung.. Brassmaster Flash besteht aus professionellen Musikerinnen und Musikern aus der ganzen Schweiz und darüber hinaus, die ihre Liebe zum Hip-Hop verbindet, und hat sein erstes Album im Frühjahr 2024 veröffentlicht.
         </p>
         <hr>
         <p>
           Energetic, innovative and daring, the hip-hop brass band Brassmaster Flash has been touring the stages and streets of Switzerland and abroad since 2017. Between original compositions and covers of the great classics of the style, the band gets an ever-growing audience moving.
         </p>
         <p class="mb-4">
-          Formed by professional musicians from all over Switzerland and beyond, united by their love of hip-hop, Brassmaster Flash is preparing the release of its first album for the fall of 2023.
+          Formed by professional musicians from all over Switzerland and beyond, united by their love of hip-hop, Brassmaster Flash has released its first album early 2024.
         </p>
         <img class="d-block w-100" src="build/images/press-photo.jpg" alt="">
       </div>

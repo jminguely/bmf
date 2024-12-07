@@ -1,6 +1,7 @@
 <?php include("parts/header-html.php"); ?>
 
 <?php include("parts/header.php"); ?>
+<?php include("parts/booking/nav.php"); ?>
 
 <?php include("parts/booking/presentation.php"); ?>
 <?php include("parts/booking/video.php"); ?>

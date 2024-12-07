@@ -29,11 +29,4 @@
       </use>
     </svg>
   </a>
-  <br class="d-md-none">
-  <br class="d-md-none">
-  <span class="d-none d-md-inline px-5"> | </span>
-  <a href="#brassmaster-flash" class="internal-link text-bold text-uppercase text-ruby mx-3 ">Brassmaster Flash</a>
-  <a href="#video" class="internal-link text-bold text-uppercase text-waxxx mx-3 ">Video</a>
-  <a href="#tour" class="internal-link text-bold text-uppercase text-waxxx mx-3 ">Tour</a>
-  <a href="#contact" class="internal-link text-bold text-uppercase text-waxxx ml-1 ">Contact</a>
 </nav>
