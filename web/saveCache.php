@@ -5,8 +5,12 @@ require '../vendor/autoload.php';
 
 use \TANIOS\Airtable\Airtable;
 
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 $airtable = new Airtable(array(
-  'api_key'   => 'patUtNQqAKEWtjHmE.2ec7dcda8feb95e81e627e0211e9ef3fd31189784434a19e3d7fb4c2e37620d2',
+  'api_key'   => $_ENV['AIRTABLE_API_KEY'],
   'base'      => 'appOvGQqOefkMpE9o'
 ));
 
