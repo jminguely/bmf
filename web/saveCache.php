@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 use \TANIOS\Airtable\Airtable;
 
 $airtable = new Airtable(array(
-  'api_key'   => 'patUtNQqAKEWtjHmE.b2784a36b2affaed528b285e34f404b7719cdb950c7ed141558dc7a9b363b8d2',
+  'api_key'   => 'patUtNQqAKEWtjHmE.2ec7dcda8feb95e81e627e0211e9ef3fd31189784434a19e3d7fb4c2e37620d2',
   'base'      => 'appOvGQqOefkMpE9o'
 ));
 
@@ -44,7 +44,9 @@ $cacheData = [
   'expiry' => time() + 24 * 60 * 60
 ];
 
-file_put_contents(__DIR__ . '/cache/concertsData.json', json_encode($cacheData));
+if (file_put_contents(__DIR__ . '/cache/concertsData.json', json_encode($cacheData))) {
+  echo "Future and past concerts cache saved successfully.<br/>";
+}
 
 $bookingCacheData = [
   'futureConcerts' => $bookingConcerts,
@@ -52,4 +54,6 @@ $bookingCacheData = [
   'expiry' => time() + 24 * 60 * 60
 ];
 
-file_put_contents(__DIR__ . '/cache/bookingConcertsData.json', json_encode($bookingCacheData));
+if (file_put_contents(__DIR__ . '/cache/bookingConcertsData.json', json_encode($bookingCacheData))) {
+  echo "Booking concerts cache saved successfully.<br/>";
+}
