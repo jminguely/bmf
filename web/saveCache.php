@@ -1,31 +1,55 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $input = json_decode(file_get_contents('php://input'), true);
 
-  if (!isset($input['filePath']) || !isset($input['data'])) {
-    http_response_code(400);
-    echo json_encode(['message' => 'Invalid input']);
-    exit;
-  }
+// Airtable API call
+require '../vendor/autoload.php';
 
-  $filePath = $input['filePath'];
-  $data = $input['data'];
+use \TANIOS\Airtable\Airtable;
 
-  $fullPath = __DIR__ . $filePath;
-  $directory = dirname($fullPath);
+$airtable = new Airtable(array(
+  'api_key'   => 'patUtNQqAKEWtjHmE.b2784a36b2affaed528b285e34f404b7719cdb950c7ed141558dc7a9b363b8d2',
+  'base'      => 'appOvGQqOefkMpE9o'
+));
 
-  if (!is_dir($directory)) {
-    mkdir($directory, 0777, true);
-  }
+$futureConcerts = [];
+$pastConcerts = [];
+$bookingConcerts = [];
 
-  if (file_put_contents($fullPath, json_encode($data))) {
-    http_response_code(200);
-    echo json_encode(['message' => 'Cache saved successfully']);
-  } else {
-    http_response_code(500);
-    echo json_encode(['message' => 'Failed to save cache']);
-  }
-} else {
-  http_response_code(405);
-  echo json_encode(['message' => 'Method not allowed']);
-}
+// Fetch future concerts
+$params = array("filterByFormula" => "AND(Online, Past = 'Future')");
+$request = $airtable->getContent('Concerts', $params);
+do {
+  $response = $request->getResponse();
+  $futureConcerts = array_merge($futureConcerts, $response['records']);
+} while ($request = $response->next());
+
+// Fetch past concerts
+$params = array("filterByFormula" => "AND(Online, Past = 'Past')");
+$request = $airtable->getContent('Concerts', $params);
+do {
+  $response = $request->getResponse();
+  $pastConcerts = array_merge($pastConcerts, $response['records']);
+} while ($request = $response->next());
+
+// Fetch booking concerts
+$params = array("filterByFormula" => "AND(Past = 'Future', Statut = 'Confirmé')");
+$request = $airtable->getContent('Concerts', $params);
+do {
+  $response = $request->getResponse();
+  $bookingConcerts = array_merge($bookingConcerts, $response['records']);
+} while ($request = $response->next());
+
+$cacheData = [
+  'futureConcerts' => $futureConcerts,
+  'pastConcerts' => $pastConcerts,
+  'expiry' => time() + 24 * 60 * 60
+];
+
+file_put_contents(__DIR__ . '/cache/concertsData.json', json_encode($cacheData));
+
+$bookingCacheData = [
+  'futureConcerts' => $bookingConcerts,
+  'pastConcerts' => $pastConcerts,
+  'expiry' => time() + 24 * 60 * 60
+];
+
+file_put_contents(__DIR__ . '/cache/bookingConcertsData.json', json_encode($bookingCacheData));

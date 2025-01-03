@@ -1,159 +1,52 @@
 <?php
-function createCacheFile($filePath)
+function renderConcerts($records, $title, $emptyMessage)
 {
-  if (!file_exists($filePath)) {
-    $initialData = json_encode(['futureConcerts' => [], 'pastConcerts' => [], 'expiry' => 0]);
-    file_put_contents($filePath, $initialData);
-  }
-}
+  $html = "";
 
-createCacheFile(__DIR__ . '/../../cache/bookingConcertsData.json');
-?>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-<script src="/build/js/airtable.js"></script>
-<script>
-  var Airtable = require('airtable');
-  Airtable.configure({
-    endpointUrl: 'https://api.airtable.com',
-    apiKey: 'patUtNQqAKEWtjHmE.b2784a36b2affaed528b285e34f404b7719cdb950c7ed141558dc7a9b363b8d2'
-  });
-  var base = Airtable.base('appOvGQqOefkMpE9o');
+  if (count($records)) {
+    $html .= '<h2 class="mb-3 text-white h1 text-center">' . $title . '</h2>';
+    $html .= '<div class="table w-100 mb-5">';
 
-  var loadConcerts = function() {
-    var futureConcertEl = document.getElementById('future-dates');
-    var pastConcertEl = document.getElementById('past-dates');
+    foreach ($records as $record) {
+      $m = date_create($record['fields']['Date check-in']);
+      if ($m) {
+        $html .= '<div class="row" style="padding: 3px 0;">';
+        $html .= '<div class="text-md-right col col-12 col-md-2">';
+        $html .= '<time datetime="' . $m->format("Y-m-d") . '">';
+        $html .= $m->format("d.m.Y");
+        $html .= '</time>';
+        $html .= '</div>';
+        $html .= '<div class="col col-6 col-md-5"><strong>' . $record['fields']['Titre'] . '</strong></div>';
+        $html .= '<div class="col col-6 col-md-5">' . $record['fields']['Ville'] . '</div>';
 
-    var cacheFilePath = '/cache/bookingConcertsData.json';
-    var cacheExpiryTime = 24 * 60 * 60 * 1000; // 24 hours
 
-    fetch(cacheFilePath)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Cache file not found');
-        }
-      })
-      .then(data => {
-        var now = new Date().getTime();
-        if (now < data.expiry) {
-          renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
-          renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
-        } else {
-          throw new Error('Cache expired');
-        }
-      })
-      .catch(() => {
-        fetchConcertsData().then(data => {
-          var now = new Date().getTime();
-          var cacheData = {
-            futureConcerts: data.futureConcerts,
-            pastConcerts: data.pastConcerts,
-            expiry: now + cacheExpiryTime
-          };
-          fetch('/saveCache.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              filePath: cacheFilePath,
-              data: cacheData
-            })
-          });
-          renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
-          renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
-        }).catch(error => {
-          console.log(error);
-        });
-      });
-  };
-
-  var fetchConcertsData = function() {
-    return new Promise((resolve, reject) => {
-      var futureConcerts = [];
-      var pastConcerts = [];
-
-      base('Concerts').select({
-        sort: [{
-          field: 'Date check-in',
-          direction: 'asc'
-        }],
-        filterByFormula: "AND(Past = 'Future', Statut = 'Confirmé')"
-      }).eachPage(function page(records, fetchNextPage) {
-        futureConcerts = futureConcerts.concat(records);
-        fetchNextPage();
-      }, function done(error) {
-        if (error) {
-          reject(error);
-        } else {
-          base('Concerts').select({
-            sort: [{
-              field: 'Date check-in',
-              direction: 'desc'
-            }],
-            filterByFormula: "AND(Online, Past = 'Past')"
-          }).eachPage(function page(records, fetchNextPage) {
-            pastConcerts = pastConcerts.concat(records);
-            fetchNextPage();
-          }, function done(error) {
-            if (error) {
-              reject(error);
-            } else {
-              resolve({
-                futureConcerts,
-                pastConcerts
-              });
-            }
-          });
-        }
-      });
-    });
-  };
-
-  var renderConcerts = function(records, element, title, emptyMessage) {
-    let html = "";
-
-    if (records.length) {
-      html += '<h2 class="mb-3 text-white h1 text-center">' + title + '</h2>';
-      html += '<div class="table w-100 mb-5">';
-
-      records.forEach((record) => {
-        let m = dayjs(record.fields['Date check-in'], "YYYYMMDD");
-
-        html += '<div class="row" style="padding: 2px 0;">';
-        html += '<div class="text-md-right col col-12 col-md-2">';
-        html += '<time datetime="' + m.format("YY-MM-DD") + '">';
-        html += m.format("DD.MM.YYYY");
-        html += '</time>';
-        html += '</div>';
-        html += '<div class="col col-6 col-md-5">';
-        html += '<strong>' + record.fields.Titre + '</strong>';
-        html += '</div>';
-        html += '<div class="col col-6 col-md-3">';
-        html += record.fields.Ville;
-        html += '</div>';
-        html += '</div>';
-      });
-
-      html += '</div>';
-    } else {
-      html += '<h3 class="text-white text-center my-5">' + emptyMessage + '</h3>';
+        $html .= '</div>';
+      }
     }
 
-    element.innerHTML = html;
-  };
+    $html .= '</diu>';
+  } else {
+    $html .= '<h3 class="text-white text-center my-5">' . $emptyMessage . '</h3>';
+  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    loadConcerts();
-  });
-</script>
+  return $html;
+}
+
+
+$cacheFilePath = __DIR__ . '/../../cache/bookingConcertsData.json';
+$cacheData = json_decode(file_get_contents($cacheFilePath), true);
+
+
+$futureConcertsHtml = renderConcerts($cacheData['futureConcerts'], 'On Tour !', 'Currently on well deserved holidays');
+$pastConcertsHtml = renderConcerts($cacheData['pastConcerts'], 'Past gigs', '');
+
+?>
 <section id="tour" class="bg-waxxx py-5 d-flex flex-column">
   <div class="container py-5">
     <div class="row">
       <div class="col-md-10 offset-md-1">
-        <div id="future-dates"></div>
-        <div id="past-dates"></div>
+        <div id="future-dates"><?php echo $futureConcertsHtml; ?></div>
+        <div id="past-dates"><?php echo $pastConcertsHtml; ?></div>
       </div>
     </div>
   </div>

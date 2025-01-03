@@ -3,7 +3,8 @@
     "type": "project",
     "require": {
         "twig/twig": "^2.0",
-        "fightbulc/moment": "^1.26"
+        "fightbulc/moment": "^1.26",
+        "sleiman/airtable-php": "^3.0"
     },
     "authors": [
         {
