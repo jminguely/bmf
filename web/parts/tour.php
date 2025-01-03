@@ -1,3 +1,14 @@
+<?php
+function createCacheFile($filePath)
+{
+  if (!file_exists($filePath)) {
+    $initialData = json_encode(['futureConcerts' => [], 'pastConcerts' => [], 'expiry' => 0]);
+    file_put_contents($filePath, $initialData);
+  }
+}
+
+createCacheFile(__DIR__ . '/../cache/concertsData.json');
+?>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script src="/build/js/airtable.js"></script>
 <script>
@@ -12,28 +23,50 @@
     var futureConcertEl = document.getElementById('future-dates');
     var pastConcertEl = document.getElementById('past-dates');
 
-    var cacheKey = 'concertsData';
-    var cacheExpiryKey = 'concertsDataExpiry';
+    var cacheFilePath = '/cache/concertsData.json';
     var cacheExpiryTime = 24 * 60 * 60 * 1000; // 24 hours
 
-    var now = new Date().getTime();
-    var cachedData = localStorage.getItem(cacheKey);
-    var cacheExpiry = localStorage.getItem(cacheExpiryKey);
-
-    if (cachedData && cacheExpiry && now < cacheExpiry) {
-      var data = JSON.parse(cachedData);
-      renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
-      renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
-    } else {
-      fetchConcertsData().then(data => {
-        localStorage.setItem(cacheKey, JSON.stringify(data));
-        localStorage.setItem(cacheExpiryKey, now + cacheExpiryTime);
-        renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
-        renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
-      }).catch(error => {
-        console.log(error);
+    fetch(cacheFilePath)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Cache file not found');
+        }
+      })
+      .then(data => {
+        var now = new Date().getTime();
+        if (now < data.expiry) {
+          renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
+          renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
+        } else {
+          throw new Error('Cache expired');
+        }
+      })
+      .catch(() => {
+        fetchConcertsData().then(data => {
+          var now = new Date().getTime();
+          var cacheData = {
+            futureConcerts: data.futureConcerts,
+            pastConcerts: data.pastConcerts,
+            expiry: now + cacheExpiryTime
+          };
+          fetch('/saveCache.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              filePath: cacheFilePath,
+              data: cacheData
+            })
+          });
+          renderConcerts(data.futureConcerts, futureConcertEl, 'On Tour !', 'Currently on well deserved holidays');
+          renderConcerts(data.pastConcerts, pastConcertEl, 'Past gigs', '');
+        }).catch(error => {
+          console.log(error);
+        });
       });
-    }
   };
 
   var fetchConcertsData = function() {
