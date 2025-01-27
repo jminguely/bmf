@@ -35,7 +35,7 @@ do {
 } while ($request = $response->next());
 
 // Fetch booking concerts
-$params = array("filterByFormula" => "AND(Past = 'Future', Statut = 'Confirmé')");
+$params = array("filterByFormula" => "AND(Past = 'Future', Statut = 'Confirmé', Type = 'Concert')");
 $request = $airtable->getContent('Concerts', $params);
 do {
   $response = $request->getResponse();
