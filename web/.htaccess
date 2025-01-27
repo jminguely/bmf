@@ -1,2 +1,9 @@
 RewriteEngine On
 RewriteRule ^booking$ /booking.php [L]
+
+<Files "saveCache.php">
+    AuthType Basic
+    AuthName "Restricted Area"
+    AuthUserFile /home/jminguely/www/brass.hiphop/web/.htpasswd
+    Require valid-user
+</Files>
