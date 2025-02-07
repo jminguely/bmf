@@ -19,7 +19,10 @@ $pastConcerts = [];
 $bookingConcerts = [];
 
 // Fetch future concerts
-$params = array("filterByFormula" => "AND(Online, Past = 'Future')");
+$params = array(
+  "filterByFormula" => "AND(Online, Past = 'Future')",
+  "sort" => array(array("field" => "Date check-in", "direction" => "asc"))
+);
 $request = $airtable->getContent('Concerts', $params);
 do {
   $response = $request->getResponse();
@@ -27,7 +30,10 @@ do {
 } while ($request = $response->next());
 
 // Fetch past concerts
-$params = array("filterByFormula" => "AND(Online, Past = 'Past')");
+$params = array(
+  "filterByFormula" => "AND(Online, Past = 'Past')",
+  "sort" => array(array("field" => "Date check-in", "direction" => "desc"))
+);
 $request = $airtable->getContent('Concerts', $params);
 do {
   $response = $request->getResponse();
@@ -35,7 +41,10 @@ do {
 } while ($request = $response->next());
 
 // Fetch booking concerts
-$params = array("filterByFormula" => "AND(Past = 'Future', Statut = 'Confirmé', Type = 'Concert')");
+$params = array(
+  "filterByFormula" => "AND(Past = 'Future', Statut = 'Confirmé', Type = 'Concert')",
+  "sort" => array(array("field" => "Date check-in", "direction" => "asc"))
+);
 $request = $airtable->getContent('Concerts', $params);
 do {
   $response = $request->getResponse();
